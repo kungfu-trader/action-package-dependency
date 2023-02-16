@@ -1,6 +1,6 @@
 {
   "name": "@kungfu-trader/action-package-dependency",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "main": "dist/index.js",
   "repository": "https://github.com/kungfu-trader/action-package-dependency",
   "author": "Kungfu Trader",
