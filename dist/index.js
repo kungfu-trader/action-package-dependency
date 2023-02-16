@@ -135,9 +135,10 @@ exports.showPackageDependencies = async function (argv) {
   // const a = semver.parse('1.2.1-alpha')
   // console.log(a.prerelease[0]);
   const cwd = process.cwd();
-  const fileList = [];
+  let fileList = [];
   const airtableInfo = [];
   await getConfigFiles(cwd, fileList);
+  fileList = fileList.filter(Boolean);
   console.log(fileList);
   const url = 'https://api.airtable.com/v0/appd2XwFJcQWZM8fw/dependencies';
 
