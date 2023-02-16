@@ -1,6 +1,6 @@
 {
   "name": "@kungfu-trader/action-package-dependency",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.0",
   "main": "dist/index.js",
   "repository": "https://github.com/kungfu-trader/action-package-dependency",
   "author": "Kungfu Trader",
@@ -14,12 +14,12 @@
   "dependencies": {
     "@actions/core": "^1.8.0",
     "@actions/github": "^5.0.0",
+    "axios": "^1.3.1",
     "git-client": "^1.8.3",
     "nodegit": "^0.27.0",
+    "readline": "1.3.0",
     "semver": "^7.3.0",
-    "yargs": "^17.5.0",
-    "axios": "^1.3.1",
-    "readline": "1.3.0"
+    "yargs": "^17.5.0"
   },
   "devDependencies": {
     "@ls-lint/ls-lint": "^1.9.0",
