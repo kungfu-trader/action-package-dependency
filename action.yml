@@ -1,0 +1,10 @@
+name: "Find Dependencies"
+author: "Kungfu Trader"
+description: "Find package dependencies"
+inputs:
+  token:
+    description: "E.g. secrets.GITHUB_TOKEN"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
