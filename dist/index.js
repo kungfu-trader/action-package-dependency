@@ -26878,8 +26878,11 @@ const main = async function () {
     owner: context.repo.owner,
     repo: context.repo.repo,
     cwd: process.cwd(),
+    listDeps: core.getInput('list-dependencies'),
   };
-  await lib.showPackageDependencies(argv);
+  if (argv.listDeps) {
+    await lib.showPackageDependencies(argv);
+  }
 };
 
 if (require.main === require.cache[eval('__filename')]) {
