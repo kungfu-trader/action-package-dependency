@@ -133,7 +133,7 @@ async function parseJson(jsonFile) {
 
 exports.showPackageDependencies = async function (argv) {
   // const a = semver.parse('1.2.1-alpha')
-  console.log(a.prerelease[0]);
+  // console.log(a.prerelease[0]);
   const cwd = process.cwd();
   const fileList = [];
   const airtableInfo = [];
