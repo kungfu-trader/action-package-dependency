@@ -26898,7 +26898,7 @@ const main = async function () {
     cwd: process.cwd(),
     listDeps: core.getInput('list-dependencies'),
   };
-  console.log("airtable apikey:", argv.apiKey);
+  console.log('airtable apikey:', argv.apiKey);
   if (argv.listDeps) {
     await lib.showPackageDependencies(argv);
   }
