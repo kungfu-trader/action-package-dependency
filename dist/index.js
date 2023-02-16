@@ -83,11 +83,29 @@ async function createAirtableRecord(url, dataList, airtableApiKey) {
 }
 
 async function parseJson(jsonFile) {
+  if (fs.existsSync(jsonFile)) {
+    console.log('eeeee');
+  }
   const jsonInfo = fs.readJSONSync(jsonFile);
   const dep = jsonInfo.dependencies;
-  console.log(dep);
+  console.log('dependencies tag in package.json: ', dep);
   const retDeps = [];
+  let sVer = null;
   if (dep !== undefined) {
+    if (!jsonInfo.version) {
+      const lerna = jsonFile.replace(/package.json/, 'lerna.json');
+      if (fs.existsSync(lerna)) {
+        const lernaInfo = fs.readJSONSync(lerna);
+        if (lernaInfo.version) {
+          sVer = semver.parse(lernaInfo.version);
+        }
+      }
+    } else {
+      sVer = semver.parse(jsonInfo.version);
+    }
+    if (!sVer) {
+      return null;
+    }
     const packageName = jsonInfo.kungfuCraft ? jsonInfo.kungfuCraft.productName : jsonInfo.name;
     const depFromPackagejson = new Map();
     for (const key in dep) {
@@ -116,7 +134,7 @@ async function parseJson(jsonFile) {
       }
       preLine = line;
     }
-    const sVer = semver.parse(jsonInfo.version);
+
     let verWithPatch = sVer.prerelease.length > 0 ? '-' + sVer.prerelease[0] : '';
     verWithPatch = sVer.major + '.' + sVer.minor + verWithPatch;
     const ret = {
@@ -125,7 +143,7 @@ async function parseJson(jsonFile) {
       Dependencies: JSON.stringify(retDeps),
       'Version-without-patch': verWithPatch,
     };
-    console.log(ret);
+    console.log('dependencies: ', ret);
     return ret;
   }
   return null;
@@ -138,8 +156,7 @@ exports.showPackageDependencies = async function (argv) {
   let fileList = [];
   const airtableInfo = [];
   await getConfigFiles(cwd, fileList);
-  fileList = fileList.filter(Boolean);
-  console.log(fileList);
+  console.log('config files: ', fileList);
   const url = 'https://api.airtable.com/v0/appd2XwFJcQWZM8fw/dependencies';
 
   for (let i = 0; i < fileList.length; i++) {
