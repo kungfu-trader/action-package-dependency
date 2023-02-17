@@ -13,6 +13,9 @@ jobs:
     with:
       prebuild: false
       list-dependencies: false
+    secrets:
+      AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+      AIRTABLE_API_KEY_2: ${{ secrets.AIRTABLE_API_KEY_2 }}
   
   verify:
     needs: try
