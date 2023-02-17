@@ -94,7 +94,7 @@ async function parseJson(jsonFile) {
       }
     } else {
       sVer = semver.parse(jsonInfo.version);
-      packageVersion = lernaInfo.version;
+      packageVersion = jsonInfo.version;
     }
     if (!sVer) {
       return null;
