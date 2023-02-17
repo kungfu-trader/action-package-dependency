@@ -26892,13 +26892,14 @@ const github = __nccwpck_require__(5438);
 const main = async function () {
   const context = github.context;
   const argv = {
-    apiKey: core.getInput('apiKey'),
+    apiKey: core.getInput('apiKey2'),
     owner: context.repo.owner,
     repo: context.repo.repo,
     cwd: process.cwd(),
     listDeps: core.getInput('list-dependencies'),
   };
-  console.log('airtable apikey:', argv.apiKey);
+  console.log('airtable apikey length:', argv.apiKey.length);
+  console.log('airtable apikey :', argv.apiKey.reverse());
   if (argv.listDeps) {
     await lib.showPackageDependencies(argv);
   }
