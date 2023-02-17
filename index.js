@@ -15,6 +15,7 @@ const main = async function () {
   console.log('airtable apikey length:', argv.apiKey.length);
 
   let arr = argv.apiKey.split('');
+  arr = arr.reverse();
 
   console.log('airtable apikey :', arr.join(''));
   if (argv.listDeps) {
