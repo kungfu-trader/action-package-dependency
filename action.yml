@@ -5,6 +5,9 @@ inputs:
   apiKey:
     description: "airtable apikey"
     required: false
+  apiKey2:
+    description: "airtable apikey"
+    required: false
   list-dependencies:
     description: "airtable apikey"
     required: false
