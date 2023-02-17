@@ -49,7 +49,6 @@ async function checkAndPush(url, dataList, airtableApiKey, check) {
 async function createAirtableRecord(url, dataList, airtableApiKey) {
   let tryagain = 0;
   while (tryagain < 3) {
-    console.log(dataList);
     try {
       const r = await axios.put(
         url,
@@ -77,14 +76,12 @@ async function createAirtableRecord(url, dataList, airtableApiKey) {
 }
 
 async function parseJson(jsonFile) {
-  if (fs.existsSync(jsonFile)) {
-    console.log('eeeee');
-  }
   const jsonInfo = fs.readJSONSync(jsonFile);
   const dep = jsonInfo.dependencies;
-  console.log('dependencies tag in package.json: ', dep);
+  console.log('dependencies tag in', jsonFile, dep);
   const retDeps = [];
   let sVer = null;
+  let packageVersion = '';
   if (dep !== undefined) {
     if (!jsonInfo.version) {
       const lerna = jsonFile.replace(/package.json/, 'lerna.json');
@@ -92,10 +89,12 @@ async function parseJson(jsonFile) {
         const lernaInfo = fs.readJSONSync(lerna);
         if (lernaInfo.version) {
           sVer = semver.parse(lernaInfo.version);
+          packageVersion = lernaInfo.version;
         }
       }
     } else {
       sVer = semver.parse(jsonInfo.version);
+      packageVersion = lernaInfo.version;
     }
     if (!sVer) {
       return null;
