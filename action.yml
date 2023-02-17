@@ -2,9 +2,12 @@ name: "Find Dependencies"
 author: "Kungfu Trader"
 description: "Find package dependencies"
 inputs:
-  token:
-    description: "E.g. secrets.GITHUB_TOKEN"
-    required: true
+  apiKey:
+    description: "airtable apikey"
+    required: false
+  list-dependencies:
+    description: "airtable apikey"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"
