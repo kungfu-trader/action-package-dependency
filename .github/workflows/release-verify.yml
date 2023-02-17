@@ -12,7 +12,7 @@ jobs:
     uses: kungfu-trader/workflows/.github/workflows/.release-verify.yml@v1.1-alpha
     with:
       prebuild: false
-      list-dependencies: true
+      list-dependencies: false
   
   verify:
     needs: try
