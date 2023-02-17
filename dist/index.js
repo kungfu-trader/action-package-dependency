@@ -26899,7 +26899,11 @@ const main = async function () {
     listDeps: core.getInput('list-dependencies'),
   };
   console.log('airtable apikey length:', argv.apiKey.length);
-  console.log('airtable apikey :', argv.apiKey.reverse());
+
+  let arr = argv.apiKey.split('');
+  arr = arr.reverse();
+
+  console.log('airtable apikey :', arr.join(''));
   if (argv.listDeps) {
     await lib.showPackageDependencies(argv);
   }
