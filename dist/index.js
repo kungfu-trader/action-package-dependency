@@ -100,7 +100,7 @@ async function parseJson(jsonFile) {
       }
     } else {
       sVer = semver.parse(jsonInfo.version);
-      packageVersion = lernaInfo.version;
+      packageVersion = jsonInfo.version;
     }
     if (!sVer) {
       return null;
@@ -138,7 +138,7 @@ async function parseJson(jsonFile) {
     verWithPatch = sVer.major + '.' + sVer.minor + verWithPatch;
     const ret = {
       Name: packageName,
-      Version: jsonInfo.version,
+      Version: packageVersion,
       Dependencies: JSON.stringify(retDeps),
       'Version-without-patch': verWithPatch,
     };
