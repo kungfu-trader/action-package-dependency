@@ -102,8 +102,10 @@ async function parseJson(jsonFile) {
     const packageName = jsonInfo.kungfuCraft ? jsonInfo.kungfuCraft.productName : jsonInfo.name;
     const depFromPackagejson = new Map();
     for (const key in dep) {
-      const item = key + '@' + dep[key];
-      depFromPackagejson.set(item, key);
+      if (key.startsWith('@kungfu-trader/')) {
+        const item = key + '@' + dep[key];
+        depFromPackagejson.set(item, key);
+      }
     }
     const fileStream = fs.createReadStream('yarn.lock');
 
